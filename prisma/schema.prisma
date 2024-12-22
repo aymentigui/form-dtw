@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String   @id @default(cuid())
+  email             String   @unique
+  name              String?
+  arabicName        String?
+  isSociety         Boolean  @default(false)
+  societyName       String?
+  address           String?
+  dateOfBirth       DateTime?
+  phoneNumber       String?
+  activityType      String?
+  nin               String?  @unique // National Identification Number
+  transporterNumber String?  @unique
+  createdAt         DateTime @default(now())
+}
+
+
+model VerificationCode {
+  id        String   @id @default(cuid())
+  code      String
+  email     String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model Admin {
+  id       String @id @default(cuid())
+  email    String @unique
+  password String
+  wilaya   Int?
+}
+
+model LoginAttempt {
+    id          Int      @id @default(autoincrement())
+    email       String   @unique
+    attempts    Int
+    isBlocked   Boolean  @default(false)
+    unblockTime DateTime?
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+}
