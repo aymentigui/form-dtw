@@ -37,22 +37,23 @@ export async function POST(req: Request) {
     // Générer le QR code
     const qrCodeDataUrl = await QRCode.toDataURL(user.id)
     const base64Data = qrCodeDataUrl.replace(/^data:image\/png;base64,/, '');
-
-    // Définir le chemin du fichier où l'image sera enregistrée
-    const qrFolderPath = path.join(process.cwd(), 'public', 'qr');
-    const filePath = path.join(qrFolderPath, `${user.id}.png`);
-    // Créer le dossier 'public/qr' s'il n'existe pas
-    if (!fs.existsSync(qrFolderPath)) {
-      fs.mkdirSync(qrFolderPath, { recursive: true });
-    }
-
-    // Sauvegarder l'image en tant que fichier PNG
+    let publicUrl="/logo.png"
+    
     try {
+      // Définir le chemin du fichier où l'image sera enregistrée
+      const qrFolderPath = path.join(process.cwd(), 'public', 'qr');
+      const filePath = path.join(qrFolderPath, `${user.id}.png`);
+      // Créer le dossier 'public/qr' s'il n'existe pas
+      if (!fs.existsSync(qrFolderPath)) {
+        fs.mkdirSync(qrFolderPath, { recursive: true });
+      }
+
+      // Sauvegarder l'image en tant que fichier PNG
       fs.writeFileSync(filePath, base64Data, 'base64');
+      publicUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/qr/${user.id}.png`;
     } catch (error) {
-      console.log("erreur lorsque la creation de fichier")
-        }
-    const publicUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/qr/${user.id}.png`;
+      console.log("erreur lorsque la creation de ficher")
+    }
 
     // Envoyer l'email de confirmation avec le QR code
     await sendEmail(
