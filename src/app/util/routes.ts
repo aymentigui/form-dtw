@@ -1,5 +1,6 @@
 export const publicRoutes =[
-    "/","/confermation"
+    "/","/confermation","/api/send-verification-code","/api/verify-code","/api/register"
+    
 ]
 
 export const authRoutes =[
