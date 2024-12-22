@@ -1,12 +1,12 @@
-const NEXTAUTH_URL = process.env.NEXTAUTH_URL || "http://localhost:3000";
 export const publicRoutes =[
-    NEXTAUTH_URL+"/",NEXTAUTH_URL+"/confermation"
+    "/","/confermation"
 ]
 
 export const authRoutes =[
-    NEXTAUTH_URL+ "/auth/login",
+    "/auth/login",
+    "/auth/register",
 ]
 
-export const apiAuthPrefix =NEXTAUTH_URL+"/api/auth"
+export const apiAuthPrefix ="/api/auth"
 
-export const defaultRedirect =NEXTAUTH_URL+"/admin/statistics"
+export const defaultRedirect ="/admin/statistics"
