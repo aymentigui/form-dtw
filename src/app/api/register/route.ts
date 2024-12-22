@@ -47,7 +47,11 @@ export async function POST(req: Request) {
     }
 
     // Sauvegarder l'image en tant que fichier PNG
-    fs.writeFileSync(filePath, base64Data, 'base64');
+    try {
+      fs.writeFileSync(filePath, base64Data, 'base64');
+    } catch (error) {
+      console.log("erreur lorsque la creation de fichier")
+        }
     const publicUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/qr/${user.id}.png`;
 
     // Envoyer l'email de confirmation avec le QR code
