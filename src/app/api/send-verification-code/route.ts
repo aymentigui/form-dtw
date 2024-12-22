@@ -6,6 +6,7 @@ import { getSendVerificationCodeTemplate } from '@/app/templates/send-verificati
 const prisma = new PrismaClient()
 
 export async function POST(req: Request) {
+  console.log("ok")
   try {
     const { email } = await req.json()
 
