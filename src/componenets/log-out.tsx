@@ -1,4 +1,4 @@
-import { signOut } from '@/app/util/auth'
+import { logOut } from '@/actions/login'
 import { Button } from '@/components/ui/button'
 import { LogOut } from 'lucide-react'
 import React from 'react'
@@ -9,7 +9,7 @@ const LogOutComp = () => {
         <form action={async()=>
           { 
             "use server"
-            await signOut()
+            await logOut() 
           }
         }>
             <Button type='submit'>

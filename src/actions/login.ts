@@ -3,10 +3,12 @@
 import { z } from "zod"
 import { defaultRedirect } from "@/app/util/routes"
 //import { AuthError } from "next-auth"
-import { signIn } from "@/app/util/auth"
+import { signIn, signOut } from "@/app/util/auth"
 import { LoginSchema } from "@/app/util/schema/user"
 import { addMinutes, isBefore } from "date-fns";
 import prisma from "@/app/util/db"
+import { redirect } from "next/navigation"
+const domainUrl = process.env.DOMAIN_URL;
 
 export const login = async (data: z.infer<typeof LoginSchema>) => {
     const validateFileds = LoginSchema.safeParse(data);
@@ -43,9 +45,9 @@ export const login = async (data: z.infer<typeof LoginSchema>) => {
         await signIn("credentials", {
             email,
             password,
-            redirectTo: defaultRedirect
+            redirect:false
         });
-
+        redirect(domainUrl+"/admin/clients")
         // Si la connexion réussit, réinitialisez les tentatives
         await prisma.loginAttempt.delete({
             where: { email },
@@ -96,3 +98,10 @@ export const login = async (data: z.infer<typeof LoginSchema>) => {
         throw error;
     }
 };
+
+
+export const logOut=async ()=>{
+    const logout=await signOut({redirect:false})
+    if(logout)
+        redirect(domainUrl+"/auth/login")
+}
