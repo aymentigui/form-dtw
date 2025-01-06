@@ -47,7 +47,7 @@ export const login = async (data: z.infer<typeof LoginSchema>) => {
             password,
             redirect:false
         });
-        redirect(domainUrl+"/admin/clients")
+        redirect(domainUrl+"/admin/dashboard")
         // Si la connexion réussit, réinitialisez les tentatives
         await prisma.loginAttempt.delete({
             where: { email },
