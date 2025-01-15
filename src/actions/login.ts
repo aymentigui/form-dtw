@@ -45,7 +45,7 @@ export const login = async (data: z.infer<typeof LoginSchema>) => {
         await signIn("credentials", {
             email,
             password,
-            redirectTo:"/admin/dashboard"
+            redirectTo:'www.dtwmt-dz.com/admin/dashboard'
         });
         // Si la connexion réussit, réinitialisez les tentatives
         await prisma.loginAttempt.delete({
@@ -100,5 +100,5 @@ export const login = async (data: z.infer<typeof LoginSchema>) => {
 
 
 export const logOut=async ()=>{
-    await signOut({redirectTo:"/auth/login"})
+    await signOut({redirectTo:'www.dtwmt-dz.com/auth/login'})
 }
