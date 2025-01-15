@@ -17,12 +17,14 @@ import { z } from 'zod';
 import { login } from '@/actions/login';
 import { FaCircleInfo } from 'react-icons/fa6';
 import { LoginSchema } from '@/app/util/schema/user';
+import { useRouter } from 'next/navigation';
 /* eslint-disable */
 
 export default function Login() {
   const [loading, setLoading] = useTransition();
   const [succes, setSucces] = useState<string | undefined>();
   const [erreur, setErreur] = useState<string | undefined>();
+  const router=useRouter()
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -35,9 +37,12 @@ export default function Login() {
   const handleSubmit = async (data: any) => {
     login(data).then(
       (data:any)=>{
-          if(data)
+          if(data.erreur)
             setErreur(data.error)
+          else
+            router.push("/admin/dashboard")
       }
+
   )
   };
 

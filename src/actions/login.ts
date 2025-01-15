@@ -47,11 +47,14 @@ export const login = async (data: z.infer<typeof LoginSchema>) => {
             password,
             redirect:false
         });
-        redirect(domainUrl+"/admin/dashboard")
         // Si la connexion réussit, réinitialisez les tentatives
-        await prisma.loginAttempt.delete({
-            where: { email },
-        });
+        try {
+            await prisma.loginAttempt.delete({
+                where: { email },
+            });
+        } catch (error) {
+            console.log("loginAttempt delete erreur")
+        }
 
         return { success: true };
     } catch (error) {
@@ -103,5 +106,5 @@ export const login = async (data: z.infer<typeof LoginSchema>) => {
 export const logOut=async ()=>{
     const logout=await signOut({redirect:false})
     if(logout)
-        redirect(domainUrl+"/auth/login")
+        return true
 }
