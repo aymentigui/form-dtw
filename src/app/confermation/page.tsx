@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import jsPDF from "jspdf"
 import html2canvas from "html2canvas"
+import QRCode from 'qrcode'
 
 interface UserInfo {
   id: string
@@ -24,6 +25,7 @@ interface UserInfo {
 function ConfirmationPage() {
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null)
   const searchParams = useSearchParams()
+  const [base64Data, setBase64Data] = useState<any>(null)
 
   useEffect(() => {
     const userDataString = searchParams.get('data')
@@ -49,7 +51,7 @@ function ConfirmationPage() {
     const canvas = await html2canvas(element, { scale: 2 })
     const imgData = canvas.toDataURL('image/png')
     const pdf = new jsPDF('p', 'mm', 'a4')
-    
+
     // Adjust dimensions to fit A4 page
     const pdfWidth = pdf.internal.pageSize.getWidth()
     const pdfHeight = (canvas.height * pdfWidth) / canvas.width
@@ -63,11 +65,15 @@ function ConfirmationPage() {
     return <div>Chargement des informations...</div>
   }
 
+  QRCode.toDataURL(userInfo.id).then((qrCodeDataUrl)=>{
+    setBase64Data(qrCodeDataUrl)
+  })
+
   return (
     <div className="container mx-auto p-4">
       <div className="text-center flex flex-row justify-between mb-8">
         <Image src="/logo.svg" alt="Logo" width={200} height={100} />
-        <Image src={`/qr/${userInfo.id}.png`} alt="Logo secondaire" width={200} height={100} className="mt-4" />
+        <Image src={base64Data} alt="Logo secondaire" width={200} height={100} className="mt-4" />
       </div>
       <Card>
         <CardHeader>
@@ -121,9 +127,9 @@ function ConfirmationPage() {
         </CardContent>
       </Card>
       <div className="flex flex-row justify-center mt-8">
-        <button 
+        <button
           id="download-button"
-          onClick={handlePdf} 
+          onClick={handlePdf}
           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
           Imprimer cette page
         </button>
