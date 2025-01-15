@@ -54,18 +54,18 @@ useEffect(()=>{
       {isSociete && (
         <Input placeholder="Nom de la société" {...registrationForm.register("societyName")} />
       )}
-      <Input placeholder="Nom du client" {...registrationForm.register("name")} />
+      <Input placeholder="Nom et prénom de gérant" {...registrationForm.register("name")} />
       {registrationForm.formState.errors.name && (
           <p className="text-red-400">{registrationForm.formState.errors.name.message}</p>
         )}
       <Input
-        placeholder="Nom en caractères arabes"
+        placeholder="Nom et prénom en caractères arabes"
         {...registrationForm.register("arabicName")}
       />
       {registrationForm.formState.errors.arabicName && (
           <p className="text-red-400">{registrationForm.formState.errors.arabicName.message}</p>
         )}
-      <Input placeholder="Adresse du client" {...registrationForm.register("address")} />
+      <Input placeholder="Adresse de la société" {...registrationForm.register("address")} />
       {registrationForm.formState.errors.address && (
           <p className="text-red-400">{registrationForm.formState.errors.address.message}</p>
         )}
@@ -83,7 +83,7 @@ useEffect(()=>{
           <SelectValue placeholder="Nature de l'activité" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="Transport de passagers">Transport de passagers</SelectItem>
+          <SelectItem value="Transport de personnes">Transport de personnes</SelectItem>
           <SelectItem value="Transport de marchandises">Transport de marchandises</SelectItem>
         </SelectContent>
       </Select>

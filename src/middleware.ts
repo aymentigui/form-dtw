@@ -28,8 +28,9 @@ export default auth((req)=> {
     }
   
     if (!isPublicRoutes && !isLogging) {
+      const domainUrl = process.env.DOMAIN_URL;
       // Si l'utilisateur n'est pas connecté et que la route est protégée, redirigez-le vers la page de connexion
-      return NextResponse.redirect(new URL('/auth/login', nextUrl));
+      return NextResponse.redirect(`${domainUrl}/auth/login`);
     }
   
     return NextResponse.next();

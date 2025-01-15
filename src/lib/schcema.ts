@@ -12,7 +12,7 @@ export const registrationSchema = z.object({
     message: "Date de naissance invalide",
   }),
   phoneNumber: z.string().regex(/^\+?[0-9]{10,14}$/, { message: "Numéro de téléphone invalide" }),
-  activityType: z.enum(["Transport de passagers", "Transport de marchandises"]),
+  activityType: z.enum(["Transport de personnes", "Transport de marchandises"]),
   nin: z
     .string()
     .regex(/^\d{18}$/, { message: "Le NIN doit contenir exactement 18 chiffres" }),

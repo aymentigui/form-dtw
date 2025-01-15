@@ -109,11 +109,11 @@ export default function AdminDashboard() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Nom</TableHead>
+              <TableHead>Nom et prénom</TableHead>
               <TableHead>Email</TableHead>
               <TableHead>Type</TableHead>
-              <TableHead>Nom de société</TableHead>
-              <TableHead>Adresse</TableHead>
+              <TableHead>Nom de la société</TableHead>
+              <TableHead>Adresse de la société</TableHead>
               <TableHead>Date de naissance</TableHead>
               <TableHead>Téléphone</TableHead>
               <TableHead>Activité</TableHead>
