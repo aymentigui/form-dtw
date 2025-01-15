@@ -29,7 +29,6 @@ export async function POST(req: Request) {
     }
     userData.dateOfBirth =new Date(userData.dateOfBirth)
     // Créer l'utilisateur dans la base de données
-    console.log(userData)
     const user = await prisma.user.create({
       data:{
         ...userData

@@ -87,7 +87,7 @@ export function getUserConfirmationTemplate(user: any, qrCodeUrl: string): strin
           </div>
           <div class="qr-code">
             <p>Voici votre QR code :</p>
-            <img src="${qrCodeUrl}" alt="QR Code" />
+            <img src="data:image/png;base64,${qrCodeUrl}" alt="QR Code" />
           </div>
         </div>
         <div class="email-footer">
