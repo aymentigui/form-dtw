@@ -74,6 +74,7 @@ export function getUserConfirmationTemplate(user: any, qrCodeUrl: string): strin
           <p>Bonjour ${user.name || 'utilisateur'},</p>
           <p>Nous avons le plaisir de confirmer votre inscription. Voici les détails que vous avez fournis :</p>
           <div class="user-info">
+            <p><strong>Id :</strong> ${user.id || 'Non renseigné'}</p> 
             <p><strong>Nom complet :</strong> ${user.name || 'Non renseigné'}</p>
             <p><strong>Nom en arabe :</strong> ${user.arabicName || 'Non renseigné'}</p>
             <p><strong>Email :</strong> ${user.email}</p>
@@ -83,7 +84,7 @@ export function getUserConfirmationTemplate(user: any, qrCodeUrl: string): strin
             <p><strong>Type d'activité :</strong> ${user.activityType || 'Non renseigné'}</p>
             <p><strong>Numéro NIN :</strong> ${user.nin || 'Non renseigné'}</p>
             <p><strong>Numéro transporteur :</strong> ${user.transporterNumber || 'Non renseigné'}</p>
-            <p><strong>Société :</strong> ${user.isSociety ? user.societyName || 'Non renseignée' : 'Non applicable'}</p>
+            <p><strong>Société :</strong> ${user.isSociety ? user.societyName || 'Personne morale (entreprise)' : 'Personne physique (individu)'}</p>
           </div>
           <div class="qr-code">
             <p>Voici votre QR code :</p>
