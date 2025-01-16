@@ -10,6 +10,8 @@ export default auth((req)=> {
     const { nextUrl } = req;
     const isLogging = !!req.auth; // Vérifie si l'utilisateur est connecté
 
+    const domainUrl = process.env.DOMAIN_URL;
+    
     const isApiAuthRoutes = nextUrl.pathname.startsWith(apiAuthPrefix);
     // @ts-ignore
     const isPublicRoutes = publicRoutes.includes(nextUrl.pathname);
@@ -22,13 +24,12 @@ export default auth((req)=> {
   
     if (isAuthRoutes) {
       if (isLogging) {
-        return NextResponse.redirect(new URL(defaultRedirect, nextUrl));
+        return NextResponse.redirect(`${domainUrl}/admin/statistics`);
       }
       return NextResponse.next();
     }
   
     if (!isPublicRoutes && !isLogging) {
-      const domainUrl = process.env.DOMAIN_URL;
       // Si l'utilisateur n'est pas connecté et que la route est protégée, redirigez-le vers la page de connexion
       return NextResponse.redirect(`${domainUrl}/auth/login`);
     }
