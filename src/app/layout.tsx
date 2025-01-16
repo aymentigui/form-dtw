@@ -7,6 +7,9 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: 'Système d\'inscription des transporteurs',
   description: 'Inscription et gestion des transporteurs',
+  icons : {
+    icon : "/favicon.ico"
+  }
 }
 
 export default function RootLayout({
