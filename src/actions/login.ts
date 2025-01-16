@@ -94,7 +94,7 @@ export const login = async (data: z.infer<typeof LoginSchema>) => {
             return { error: "Invalid email or password" };
         }
 
-        throw error;
+        return { error: "Autre erreur" };
     }
 };
 

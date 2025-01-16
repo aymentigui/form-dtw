@@ -1,8 +1,8 @@
 
 "use client"
 import { useState, useTransition } from 'react';
-import {useForm} from "react-hook-form"
-import {zodResolver} from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   Form,
   FormControl,
@@ -24,28 +24,30 @@ export default function Login() {
   const [loading, setLoading] = useTransition();
   const [succes, setSucces] = useState<string | undefined>();
   const [erreur, setErreur] = useState<string | undefined>();
-  const router=useRouter()
+  const router = useRouter()
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
       email: "",
-      password:""
+      password: ""
     },
   })
 
   const handleSubmit = async (data: any) => {
     login(data).then(
-      (data:any)=>{
-          if(data.erreur){
-            console.log(data.erreur)
-            setErreur(data.erreur)
-          }
-          else
-            router.push("/admin/dashboard")
+      (data: any) => {
+        console.log(data)
+        if (data.erreur) {
+          console.log(data.erreur)
+          setErreur(data.erreur)
+        }
+        if (data.succes)
+          router.push("/admin/dashboard")
+
       }
 
-  )
+    )
   };
 
   return (
@@ -98,17 +100,17 @@ export default function Login() {
           </form>
         </Form>
         {
-            succes && 
-            <div className='flex items-center justify-center p-2 bg-green-400 font-bold text-white my-2 rounded-md'>
+          succes &&
+          <div className='flex items-center justify-center p-2 bg-green-400 font-bold text-white my-2 rounded-md'>
             Inscreption reussite
-            </div>
+          </div>
         }
         {
-            erreur && 
-            <div className='flex gap-2 text-sm items-center p-2 bg-red-200 font-semibold text-red-700 my-2 rounded-md'>
-                <FaCircleInfo />
-                {erreur}
-            </div>
+          erreur &&
+          <div className='flex gap-2 text-sm items-center p-2 bg-red-200 font-semibold text-red-700 my-2 rounded-md'>
+            <FaCircleInfo />
+            {erreur}
+          </div>
         }
       </div>
     </div>
