@@ -91,7 +91,7 @@ function ConfirmationPage() {
             </div>
             <div>
               <h3 className="font-semibold">Type</h3>
-              <p>{userInfo.isSociety ? 'Société' : 'Individu'}</p>
+              <p>{userInfo.isSociety ? 'Personne morale (entreprise)' : 'Personne physique (individu)'}</p>
             </div>
             {userInfo.isSociety && userInfo.societyName && (
               <div>

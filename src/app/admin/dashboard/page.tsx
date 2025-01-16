@@ -127,7 +127,7 @@ export default function AdminDashboard() {
               <TableRow key={user.id}>
                 <TableCell>{user.name}</TableCell>
                 <TableCell>{user.email}</TableCell>
-                <TableCell>{user.isSociety ? 'Société' : 'Individu'}</TableCell>
+                <TableCell>{user.isSociety ? 'Personne morale (entreprise)' : 'Personne physique (individu)'}</TableCell>
                 <TableCell>{user.societyName || '-'}</TableCell>
                 <TableCell>{user.address || '-'}</TableCell>
                 <TableCell>{user.dateOfBirth ? new Date(user.dateOfBirth).toLocaleDateString() : '-'}</TableCell>
