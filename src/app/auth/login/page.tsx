@@ -37,8 +37,10 @@ export default function Login() {
   const handleSubmit = async (data: any) => {
     login(data).then(
       (data:any)=>{
-          if(data.erreur)
-            setErreur(data.error)
+          if(data.erreur){
+            console.log(data.erreur)
+            setErreur(data.erreur)
+          }
           else
             router.push("/admin/dashboard")
       }

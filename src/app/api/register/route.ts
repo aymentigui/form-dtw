@@ -1,13 +1,12 @@
 import { NextResponse } from 'next/server'
-import { PrismaClient } from '@prisma/client'
 import { sendEmail } from '@/lib/email'
 import QRCode from 'qrcode'
 import path from 'path'
 import fs from 'fs';
 import { getUserConfirmationTemplate } from '@/app/templates/confermation'
 import { registrationSchema } from '@/lib/schcema'
+import { prisma } from '@/app/util/db'
 
-const prisma = new PrismaClient()
 
 export async function POST(req: Request) {
   try {

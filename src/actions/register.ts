@@ -4,7 +4,7 @@ import { z } from "zod"
 import bcrypt from "bcrypt";
 import { RegisterSchema } from "@/app/util/schema/user";
 import { getUserByEmail } from "@/app/util/data/user";
-import prisma from "@/app/util/db";
+import { prisma } from '@/app/util/db'
 
 export const register = async  (data: z.infer<typeof RegisterSchema>)=>{
     const validateFileds=RegisterSchema.safeParse(data)

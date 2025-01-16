@@ -1,9 +1,8 @@
 'use server'
 
-import { PrismaClient } from '@prisma/client'
+import { prisma } from '@/app/util/db'
 import bcrypt from 'bcrypt'
 
-const prisma = new PrismaClient()
 
 export async function getAdmins() {
   return await prisma.admin.findMany()

@@ -1,14 +1,10 @@
 "use server"
 
 import { z } from "zod"
-import { defaultRedirect } from "@/app/util/routes"
-//import { AuthError } from "next-auth"
 import { signIn, signOut } from "@/app/util/auth"
 import { LoginSchema } from "@/app/util/schema/user"
 import { addMinutes, isBefore } from "date-fns";
-import prisma from "@/app/util/db"
-import { redirect } from "next/navigation"
-const domainUrl = process.env.DOMAIN_URL;
+import { prisma } from '@/app/util/db'
 
 export const login = async (data: z.infer<typeof LoginSchema>) => {
     const validateFileds = LoginSchema.safeParse(data);

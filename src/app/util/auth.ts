@@ -2,10 +2,10 @@ import NextAuth from "next-auth"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import authConfig from "./auth.config"
 import Credentials from "next-auth/providers/credentials"
+import { getUserByEmail, getUserById } from "./data/user";
 import bcrypt from "bcrypt"
-import prisma from "./db";
+import { prisma } from "@/app/util/db";
 import { LoginSchema } from "./schema/user";
-import { getUserByEmail, getUserById } from "./data/user"
 /* eslint-disable */
 export const { handlers , auth, signIn, signOut } = 
   NextAuth({
@@ -42,7 +42,7 @@ export const { handlers , auth, signIn, signOut } =
         // tendar avant matendar authentification
         if(!user || !user.id)
           return false
-        //const existinUser=await getUserById(user.id)
+        const existinUser=await getUserById(user.id)
         /*
         if(!existinUser || !existinUser.emailVerified)
           return false

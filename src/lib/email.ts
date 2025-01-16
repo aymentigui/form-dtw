@@ -16,6 +16,9 @@ export async function sendEmail(to: string, subject: string, html: string) {
     to,
     subject,
     html,
+    headers: {
+      'Content-Type': 'text/html; charset=UTF-8',
+    },
   })
 }
 
