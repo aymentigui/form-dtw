@@ -59,7 +59,7 @@ useEffect(()=>{
           <p className="text-red-400">{registrationForm.formState.errors.name.message}</p>
         )}
       <Input
-        placeholder="Nom et prénom en caractères arabes"
+        placeholder="الاسم و اللقب باللغة العربية"
         {...registrationForm.register("arabicName")}
       />
       {registrationForm.formState.errors.arabicName && (
