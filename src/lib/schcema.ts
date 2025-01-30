@@ -4,6 +4,9 @@ export const registrationSchema = z.object({
   isSociety: z.boolean().default(false),
   societyName: z.string().optional(),
   name: z.string().min(2, { message: "Le nom doit contenir au moins 2 caractères" }),
+  arabicSocietyName: z
+    .string()
+    .regex(/^[\u0600-\u06FF\s]+$/, { message: "Le nom doit contenir uniquement des lettres arabes" }).optional(),
   arabicName: z
     .string()
     .regex(/^[\u0600-\u06FF\s]+$/, { message: "Le nom doit contenir uniquement des lettres arabes" }),

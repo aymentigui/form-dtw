@@ -113,6 +113,7 @@ export default function AdminDashboard() {
               <TableHead>Email</TableHead>
               <TableHead>Type</TableHead>
               <TableHead>Nom de la société</TableHead>
+              <TableHead>Nom de la société en arabe</TableHead>
               <TableHead>Adresse de la société</TableHead>
               <TableHead>Date de naissance</TableHead>
               <TableHead>Téléphone</TableHead>

@@ -74,8 +74,10 @@ export function getUserConfirmationTemplate(user: any, qrCodeUrl: string): strin
           <p>Bonjour ${user.name || 'utilisateur'},</p>
           <p>Nous avons le plaisir de confirmer votre inscription. Voici les détails que vous avez fournis :</p>
           <div class="user-info">
-            <p><strong>Id :</strong> ${user.id || 'Non renseigné'}</p> 
-            <p><strong>Nom complet :</strong> ${user.name || 'Non renseigné'}</p>
+            <p><strong>Id :</strong> ${user.id || 'Non renseigné'}</p>
+            ${user.isSociety?`<p><strong>Nom de la société :</strong> ${user.societyName || 'Non renseigné'}</p>`:""}
+            ${user.isSociety?`<p><strong>Nom de la société :</strong> ${user.arabicSocietyName || 'Non renseigné'}</p>`:""}
+            <p><strong>Nom complet ${user.isSociety?' de gérant':""} :</strong> ${user.name || 'Non renseigné'}</p>
             <p><strong>Nom en arabe :</strong> ${user.arabicName || 'Non renseigné'}</p>
             <p><strong>Email :</strong> ${user.email}</p>
             <p><strong>Date de naissance :</strong> ${user.dateOfBirth?.toLocaleDateString() || 'Non renseignée'}</p>

@@ -24,9 +24,9 @@ export const InformationForm = ({ onSubmit }: InformationFormProps) => {
     resolver: zodResolver(registrationSchema),
   });
 
-useEffect(()=>{
-  registrationForm.setValue("isSociety", isSociete);
-},[])
+  useEffect(() => {
+    registrationForm.setValue("isSociety", isSociete);
+  }, [])
 
   return (
     <motion.form
@@ -42,9 +42,11 @@ useEffect(()=>{
           {...registrationForm.register("isSociety")}
           checked={isSociete}
           onCheckedChange={() => {
-            setIsSociete(!isSociete);
-            registrationForm.setValue("isSociety", isSociete);
-            if(!isSociete)
+            setIsSociete((p)=>{
+              registrationForm.setValue("isSociety", !p);
+              return !p
+            });
+            if (!isSociete)
               registrationForm.setValue("societyName", '');
           }}
         />
@@ -54,29 +56,35 @@ useEffect(()=>{
       {isSociete && (
         <Input placeholder="Nom de la société" {...registrationForm.register("societyName")} />
       )}
-      <Input placeholder="Nom et prénom de gérant" {...registrationForm.register("name")} />
+      {isSociete && (
+        <Input placeholder="اسم الشركة باللغة العربية" {...registrationForm.register("arabicSocietyName")} />
+      )}
+      {registrationForm.formState.errors.arabicSocietyName && (
+        <p className="text-red-400">{registrationForm.formState.errors.arabicSocietyName.message}</p>
+      )}
+      <Input placeholder={"Nom et prénom"+(isSociete?" de gérant":"")} {...registrationForm.register("name")} />
       {registrationForm.formState.errors.name && (
-          <p className="text-red-400">{registrationForm.formState.errors.name.message}</p>
-        )}
+        <p className="text-red-400">{registrationForm.formState.errors.name.message}</p>
+      )}
       <Input
         placeholder="الاسم و اللقب باللغة العربية"
         {...registrationForm.register("arabicName")}
       />
       {registrationForm.formState.errors.arabicName && (
-          <p className="text-red-400">{registrationForm.formState.errors.arabicName.message}</p>
-        )}
+        <p className="text-red-400">{registrationForm.formState.errors.arabicName.message}</p>
+      )}
       <Input placeholder="Adresse de la société" {...registrationForm.register("address")} />
       {registrationForm.formState.errors.address && (
-          <p className="text-red-400">{registrationForm.formState.errors.address.message}</p>
-        )}
+        <p className="text-red-400">{registrationForm.formState.errors.address.message}</p>
+      )}
       <Input type="date" placeholder="Date de naissance" {...registrationForm.register("dateOfBirth")} />
       {registrationForm.formState.errors.dateOfBirth && (
-          <p className="text-red-400">{registrationForm.formState.errors.dateOfBirth.message}</p>
-        )}
+        <p className="text-red-400">{registrationForm.formState.errors.dateOfBirth.message}</p>
+      )}
       <Input placeholder="Numéro de téléphone" {...registrationForm.register("phoneNumber")} />
       {registrationForm.formState.errors.phoneNumber && (
-          <p className="text-red-400">{registrationForm.formState.errors.phoneNumber.message}</p>
-        )}
+        <p className="text-red-400">{registrationForm.formState.errors.phoneNumber.message}</p>
+      )}
 
       <Select onValueChange={(value) => registrationForm.setValue("activityType", value as any)}>
         <SelectTrigger>
@@ -88,19 +96,19 @@ useEffect(()=>{
         </SelectContent>
       </Select>
       {registrationForm.formState.errors.activityType && (
-          <p className="text-red-400">{registrationForm.formState.errors.activityType.message}</p>
-        )}
+        <p className="text-red-400">{registrationForm.formState.errors.activityType.message}</p>
+      )}
 
       <Input placeholder="Numéro d'identification national (NIN)" {...registrationForm.register("nin")} />
       {registrationForm.formState.errors.nin && (
-          <p className="text-red-400">{registrationForm.formState.errors.nin.message}</p>
-        )}
+        <p className="text-red-400">{registrationForm.formState.errors.nin.message}</p>
+      )}
       <Input placeholder="Numéro d'enregistrement des transporteurs" {...registrationForm.register("transporterNumber")} />
       {registrationForm.formState.errors.transporterNumber && (
-          <p className="text-red-400">{registrationForm.formState.errors.transporterNumber.message}</p>
-        )}
+        <p className="text-red-400">{registrationForm.formState.errors.transporterNumber.message}</p>
+      )}
 
-       {/* {registrationForm.formState.errors && (
+      {/* {registrationForm.formState.errors && (
         <div className="text-red-400">
           {Object.values(registrationForm.formState.errors).map((error) => (
             <p key={error.message}>{error.message}</p>

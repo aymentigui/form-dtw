@@ -10,10 +10,12 @@ import QRCode from 'qrcode'
 
 interface UserInfo {
   id: string
-  name: string
   email: string
+  name: string
+  arabicName?: string
   isSociety: boolean
   societyName?: string
+  arabicSocietyName?: string
   address: string
   dateOfBirth: string
   phoneNumber: string
@@ -82,14 +84,6 @@ function ConfirmationPage() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <h3 className="font-semibold">Nom</h3>
-              <p>{userInfo.name}</p>
-            </div>
-            <div>
-              <h3 className="font-semibold">Email</h3>
-              <p>{userInfo.email}</p>
-            </div>
-            <div>
               <h3 className="font-semibold">Type</h3>
               <p>{userInfo.isSociety ? 'Personne morale (entreprise)' : 'Personne physique (individu)'}</p>
             </div>
@@ -99,6 +93,24 @@ function ConfirmationPage() {
                 <p>{userInfo.societyName}</p>
               </div>
             )}
+            {userInfo.isSociety && userInfo.arabicSocietyName && (
+              <div>
+                <h3 className="font-semibold">Nom de la société en arabe</h3>
+                <p>{userInfo.arabicSocietyName}</p>
+              </div>
+            )}
+            <div>
+              <h3 className="font-semibold">{"Nom et prénom"+(userInfo.isSociety?" de gérant":"")}</h3>
+              <p>{userInfo.name}</p>
+            </div>
+            <div>
+              <h3 className="font-semibold">{"Nom et prénom"+(userInfo.isSociety?" de gérant":"")+" en arabe"}</h3>
+              <p>{userInfo.arabicName}</p>
+            </div>
+            <div>
+              <h3 className="font-semibold">Email</h3>
+              <p>{userInfo.email}</p>
+            </div>
             <div>
               <h3 className="font-semibold">Adresse</h3>
               <p>{userInfo.address}</p>
