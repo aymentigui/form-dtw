@@ -41,6 +41,7 @@ export async function GET(req: Request) {
         name: true,
         isSociety: true,
         societyName: true,
+        arabicName: true,
         address: true,
         dateOfBirth: true,
         phoneNumber: true,

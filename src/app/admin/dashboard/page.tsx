@@ -19,6 +19,7 @@ interface User {
   name: string
   isSociety: boolean
   societyName: string | null
+  arabicSocietyName: string | null
   address: string | null
   dateOfBirth: string | null
   phoneNumber: string | null
@@ -112,8 +113,8 @@ export default function AdminDashboard() {
               <TableHead>Nom et prénom</TableHead>
               <TableHead>Email</TableHead>
               <TableHead>Type</TableHead>
-              <TableHead>Nom de la société</TableHead>
-              <TableHead>Nom de la société en arabe</TableHead>
+              <TableHead className='w-[250px]'>Nom de la société</TableHead>
+              <TableHead className='w-[300px]'>Nom de la société en arabe</TableHead>
               <TableHead className='w-[300px]'>Adresse de la société</TableHead>
               <TableHead>Date de naissance</TableHead>
               <TableHead>Téléphone</TableHead>
@@ -129,7 +130,8 @@ export default function AdminDashboard() {
                 <TableCell>{user.name}</TableCell>
                 <TableCell>{user.email}</TableCell>
                 <TableCell>{user.isSociety ? 'Personne morale (entreprise)' : 'Personne physique (individu)'}</TableCell>
-                <TableCell>{user.societyName || '-'}</TableCell>
+                <TableCell className='w-[250px]'>{user.societyName || '-'}</TableCell>
+                <TableCell className='w-[300px]'>{user.arabicSocietyName || '-'}</TableCell>
                 <TableCell  className='w-[300px]'>{user.address || '-'}</TableCell>
                 <TableCell>{user.dateOfBirth ? new Date(user.dateOfBirth).toLocaleDateString() : '-'}</TableCell>
                 <TableCell>{user.phoneNumber || '-'}</TableCell>
