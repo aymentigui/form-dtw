@@ -114,7 +114,7 @@ export default function AdminDashboard() {
               <TableHead>Type</TableHead>
               <TableHead>Nom de la société</TableHead>
               <TableHead>Nom de la société en arabe</TableHead>
-              <TableHead>Adresse de la société</TableHead>
+              <TableHead className='w-[300px]'>Adresse de la société</TableHead>
               <TableHead>Date de naissance</TableHead>
               <TableHead>Téléphone</TableHead>
               <TableHead>Activité</TableHead>
@@ -130,7 +130,7 @@ export default function AdminDashboard() {
                 <TableCell>{user.email}</TableCell>
                 <TableCell>{user.isSociety ? 'Personne morale (entreprise)' : 'Personne physique (individu)'}</TableCell>
                 <TableCell>{user.societyName || '-'}</TableCell>
-                <TableCell>{user.address || '-'}</TableCell>
+                <TableCell  className='w-[300px]'>{user.address || '-'}</TableCell>
                 <TableCell>{user.dateOfBirth ? new Date(user.dateOfBirth).toLocaleDateString() : '-'}</TableCell>
                 <TableCell>{user.phoneNumber || '-'}</TableCell>
                 <TableCell>{user.activityType || '-'}</TableCell>
