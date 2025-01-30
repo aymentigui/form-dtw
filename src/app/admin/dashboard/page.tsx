@@ -17,6 +17,7 @@ interface User {
   id: string
   email: string
   name: string
+  arabicName : string
   isSociety: boolean
   societyName: string | null
   arabicSocietyName: string | null
@@ -110,12 +111,13 @@ export default function AdminDashboard() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Nom et prénom</TableHead>
+              <TableHead className='min-w-[150px]'>Type</TableHead>
+              <TableHead className='min-w-[150px]'>Nom et prénom</TableHead>
+              <TableHead className='min-w-[150px]'>Nom et prénom en arabe</TableHead>
               <TableHead>Email</TableHead>
-              <TableHead>Type</TableHead>
-              <TableHead className='w-[250px]'>Nom de la société</TableHead>
-              <TableHead className='w-[300px]'>Nom de la société en arabe</TableHead>
-              <TableHead className='w-[300px]'>Adresse de la société</TableHead>
+              <TableHead className='min-w-[150px]'>Nom de la société</TableHead>
+              <TableHead className='min-w-[150px]'>Nom de la société en arabe</TableHead>
+              <TableHead className='min-w-[300px]'>Adresse de la société</TableHead>
               <TableHead>Date de naissance</TableHead>
               <TableHead>Téléphone</TableHead>
               <TableHead>Activité</TableHead>
@@ -127,12 +129,13 @@ export default function AdminDashboard() {
           <TableBody>
             {users.map((user) => (
               <TableRow key={user.id}>
-                <TableCell>{user.name}</TableCell>
+                <TableCell className='min-w-[150px]'>{user.isSociety ? 'Personne morale (entreprise)' : 'Personne physique (individu)'}</TableCell>
+                <TableCell className='min-w-[150px]'>{user.name}</TableCell>
+                <TableCell className='min-w-[150px]'>{user.arabicName}</TableCell>
                 <TableCell>{user.email}</TableCell>
-                <TableCell>{user.isSociety ? 'Personne morale (entreprise)' : 'Personne physique (individu)'}</TableCell>
-                <TableCell className='w-[250px]'>{user.societyName || '-'}</TableCell>
-                <TableCell className='w-[300px]'>{user.arabicSocietyName || '-'}</TableCell>
-                <TableCell  className='w-[300px]'>{user.address || '-'}</TableCell>
+                <TableCell className='min-w-[150px]'>{user.societyName || '-'}</TableCell>
+                <TableCell className='min-w-[150px]'>{user.arabicSocietyName || '-'}</TableCell>
+                <TableCell className='min-w-[300px]'>{user.address || '-'}</TableCell>
                 <TableCell>{user.dateOfBirth ? new Date(user.dateOfBirth).toLocaleDateString() : '-'}</TableCell>
                 <TableCell>{user.phoneNumber || '-'}</TableCell>
                 <TableCell>{user.activityType || '-'}</TableCell>
