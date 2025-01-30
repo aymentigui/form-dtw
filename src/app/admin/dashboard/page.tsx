@@ -117,7 +117,7 @@ export default function AdminDashboard() {
               <TableHead>Email</TableHead>
               <TableHead className='min-w-[150px]'>Nom de la société</TableHead>
               <TableHead className='min-w-[150px]'>Nom de la société en arabe</TableHead>
-              <TableHead className='min-w-[300px]'>Adresse de la société</TableHead>
+              <TableHead className='min-w-[300px]'>Adresse</TableHead>
               <TableHead>Date de naissance</TableHead>
               <TableHead>Téléphone</TableHead>
               <TableHead>Activité</TableHead>

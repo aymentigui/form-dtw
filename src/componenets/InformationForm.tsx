@@ -42,7 +42,7 @@ export const InformationForm = ({ onSubmit }: InformationFormProps) => {
           {...registrationForm.register("isSociety")}
           checked={isSociete}
           onCheckedChange={() => {
-            setIsSociete((p)=>{
+            setIsSociete((p) => {
               registrationForm.setValue("isSociety", !p);
               return !p
             });
@@ -62,7 +62,7 @@ export const InformationForm = ({ onSubmit }: InformationFormProps) => {
       {registrationForm.formState.errors.arabicSocietyName && (
         <p className="text-red-400">{registrationForm.formState.errors.arabicSocietyName.message}</p>
       )}
-      <Input placeholder={"Nom et prénom"+(isSociete?" de gérant":"")} {...registrationForm.register("name")} />
+      <Input placeholder={"Nom et prénom" + (isSociete ? " de gérant" : "")} {...registrationForm.register("name")} />
       {registrationForm.formState.errors.name && (
         <p className="text-red-400">{registrationForm.formState.errors.name.message}</p>
       )}
@@ -73,11 +73,14 @@ export const InformationForm = ({ onSubmit }: InformationFormProps) => {
       {registrationForm.formState.errors.arabicName && (
         <p className="text-red-400">{registrationForm.formState.errors.arabicName.message}</p>
       )}
-      <Input placeholder="Adresse de la société" {...registrationForm.register("address")} />
+      <Input placeholder="Adresse" {...registrationForm.register("address")} />
       {registrationForm.formState.errors.address && (
         <p className="text-red-400">{registrationForm.formState.errors.address.message}</p>
       )}
-      <Input type="date" placeholder="Date de naissance" {...registrationForm.register("dateOfBirth")} />
+      <div className="flex flex-col gap-2">
+        <label className="text-sm px-2">Date de naissance</label>
+        <Input type="date" placeholder="Date de naissance" {...registrationForm.register("dateOfBirth")} />
+      </div>
       {registrationForm.formState.errors.dateOfBirth && (
         <p className="text-red-400">{registrationForm.formState.errors.dateOfBirth.message}</p>
       )}
